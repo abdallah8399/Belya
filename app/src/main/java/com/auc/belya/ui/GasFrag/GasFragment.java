@@ -107,13 +107,15 @@ public class GasFragment extends Fragment implements GasRequestAdapter.OnItemCli
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRequests= new ArrayList<>();
         mKeys= new ArrayList<>();
-
+        aSwitch = root.findViewById(R.id.switch1);
+        btn_make_request = root.findViewById(R.id.btn_make_request);
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
                 user_loc = location;
                 aSwitch.setEnabled(true);
+                btn_make_request.setEnabled(true);
                 reqRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -135,8 +137,7 @@ public class GasFragment extends Fragment implements GasRequestAdapter.OnItemCli
         });
 
 
-        aSwitch = root.findViewById(R.id.switch1);
-        btn_make_request = root.findViewById(R.id.btn_make_request);
+
         btn_make_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

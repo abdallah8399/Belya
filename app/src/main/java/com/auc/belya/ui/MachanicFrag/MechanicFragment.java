@@ -72,6 +72,11 @@ public class MechanicFragment extends Fragment implements MechRequestAdapter.OnI
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        MechanicViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(MechanicViewModel.class);
+
+        binding = FragmentMechanicBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         boolean enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -84,18 +89,18 @@ public class MechanicFragment extends Fragment implements MechRequestAdapter.OnI
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[] { "android.permission.ACCESS_FINE_LOCATION",  "android.permission.ACCESS_COARSE_LOCATION"},1);
         }
+        aSwitch = root.findViewById(R.id.mech_switch);
+        btn_make_request = root.findViewById(R.id.btn_make_mech_request);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
+                aSwitch.setEnabled(true);
+                btn_make_request.setEnabled(true);
                 user_loc = location;
             }
         });
 
-        MechanicViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(MechanicViewModel.class);
 
-        binding = FragmentMechanicBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
 
         usersRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -127,8 +132,7 @@ public class MechanicFragment extends Fragment implements MechRequestAdapter.OnI
             }
         });
 
-        aSwitch = root.findViewById(R.id.mech_switch);
-        btn_make_request = root.findViewById(R.id.btn_make_mech_request);
+
         btn_make_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

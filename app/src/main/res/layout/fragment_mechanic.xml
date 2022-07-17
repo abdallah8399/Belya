@@ -11,6 +11,7 @@
         android:id="@+id/btn_make_mech_request"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:layout_margin="30dp"
         android:text="Make a request" />
 
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
+        android:enabled="false"
         android:text="Receive Requests" />
 
     <androidx.recyclerview.widget.RecyclerView
