@@ -1,0 +1,9 @@
+This App is a rood side assistance android app.
+It supports Googel Firebase Services such as: Authentication, Realtime Database, and Storage.
+The main activity is for signing in. Also, it contains a button to go to the signup activity.
+The sign up activity collects some information from the user including name, mobile number, email, password, profile image, and ID card image.
+After the user enters his/her information, the home activity will be created.
+The home activity contains a bottom navigation bar to display 3 fragments: Gas, Mechanic, and profile.
+The gas and mechanic fragments has the same layout of a recyclar view containg the request, a switch to start recieving the requests, and a button to create the request.
+The profile fragment contains the user information in addition to the chat history.
+By clicking of any request or any name in the history, it will open the chat activity that is a textual chat between two users and contains a direction button to connect the users using Google Maps Navigation.
